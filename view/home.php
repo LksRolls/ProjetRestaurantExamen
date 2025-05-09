@@ -20,6 +20,14 @@ $stmt = $pdo->prepare("
 $stmt->execute([$id_categorie]);
 $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+$stmt2 = $pdo->prepare("
+    SELECT ca.nom
+    FROM categories AS ca
+    WHERE ca.id = ?
+");
+$stmt2->execute([$id_categorie]);
+$categorie = $stmt2->fetch(PDO::FETCH_ASSOC);
+
 if ($_SESSION['user']['id_droit'] == 2) {
     include 'templates/headerAdmin.php';
 } else {
@@ -27,15 +35,12 @@ if ($_SESSION['user']['id_droit'] == 2) {
 }
 
 ?>
-
-<!-- Partie 1 : Message de bienvenue -->
-<div class="d-flex justify-content-center align-items-center" style="min-height: 50vh;">
-    <h1 class="display-4 text-center">Bienvenue, <?= $prenom ?> 👋</h1>
+<div class="container pt-5 mb-5" style="min-height: 20vh;">
+    <h2 class="text-center mb-4">Bienvenue, <?= $prenom ?> !</h2>
 </div>
 
-<!-- Partie 2 : Tableau des prestations -->
 <div class="container mb-5" style="min-height: 50vh;">
-    <h2 class="text-center mb-4">Nos services pour votre catégorie</h2>
+    <h2 class="text-center mb-4"><p>Catégorie visible dans la page : <?= htmlspecialchars($categorie['nom']) ?></p></h2>
     <table class="table table-bordered table-striped shadow">
         <thead class="table-dark">
             <tr>

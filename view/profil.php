@@ -47,6 +47,9 @@ if ($_SESSION['user']['id_droit'] == 2) {
     </div>
 
 </form>
+<div class="text-center mt-4">
+    <a href="javascript:history.back()" class="btn btn-primary">Retour</a>
+</div>
 
 <!-- Bootstrap Icons CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
