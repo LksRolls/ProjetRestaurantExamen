@@ -14,6 +14,6 @@ $pdo = Database::connect();
 
 $stmt = $pdo->prepare("DELETE FROM `$table` WHERE id = ?");
 $stmt->execute([$id]);
-header("Location: /restaurant/view/admin.php");
+header("Location: ../admin.php");
 exit;
 ?>

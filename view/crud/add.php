@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $columns = implode(', ', $fields);
     $stmt = $pdo->prepare("INSERT INTO `$table` ($columns) VALUES ($placeholders)");
     $stmt->execute(array_values($_POST));
-    header("Location: /restaurant/view/admin.php");
+    header("Location: ../admin.php");
     exit;
 }
 
@@ -22,6 +22,7 @@ $columns = $pdo->query("DESCRIBE `$table`")->fetchAll(PDO::FETCH_COLUMN);
 ?>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<a href="../admin.php" class="btn btn-secondary position-absolute m-3" style="top: 0; left: 0;">&larr; Retour</a>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="w-100" style="max-width: 600px;">
         <h2 class="text-center mb-4">Ajouter dans <?= htmlspecialchars($table) ?></h2>

@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $setClause = implode(', ', array_map(function($f) { return "$f = ?"; }, $fields));
     $stmt = $pdo->prepare("UPDATE `$table` SET $setClause WHERE id = ?");
     $stmt->execute([...array_values($_POST), $id]);
-    header("Location: /restaurant/view/admin.php");
+    header("Location: ../admin.php");
     exit;
 }
 
@@ -24,6 +24,7 @@ $data = $row->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<a href="../admin.php" class="btn btn-secondary position-absolute m-3" style="top: 0; left: 0;">&larr; Retour</a>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="w-100" style="max-width: 600px;">
         <h2 class="text-center mb-4">Modifier dans <?= htmlspecialchars($table) ?></h2>
@@ -36,7 +37,7 @@ $data = $row->fetch(PDO::FETCH_ASSOC);
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+            <button type="submit" class="btn btn-warning w-100">Enregistrer</button>
         </form>
     </div>
 </div>
